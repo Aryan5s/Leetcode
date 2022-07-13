@@ -1,17 +1,26 @@
 class Solution {
     public int countGoodRectangles(int[][] rectangles) {
-        int maxSide = 0;
-    int countMax = 0;
-    for ( int[]  a: rectangles){
-        int smallerSide  = Math.min(a[0], a[1]);
-        if (smallerSide > maxSide){
-
-            maxSide = smallerSide;
-            countMax = 1;
-        } else if (smallerSide == maxSide ){
-            countMax += 1;
+       int[] arr = new int[rectangles.length];
+       for(int i =0; i<rectangles.length; i++){
+           arr[i] = Math.min(rectangles[i][0], rectangles[i][1]);
+       }
+        int max = maxi(arr);
+        int count = 0;
+        for(int i =0; i<arr.length; i++){
+            if(arr[i] == max){
+               count++;
+            }
         }
+        return count;
     }
-    return countMax;
+    
+    public int maxi(int[] arr){
+        int ans = Integer.MIN_VALUE;
+        for(int i =0; i<arr.length; i++){
+            if(arr[i] > ans){
+                ans = arr[i];
+            }
+        }
+        return ans;
     }
 }
