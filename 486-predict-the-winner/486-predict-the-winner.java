@@ -1,34 +1,5 @@
 class Solution {
     
-// //      int findPlayer1Score(int i, int j, vector<int> &nums){
-        
-//         if(i > j)
-//             return 0;
-        
-//         if(i == j)
-//             return nums[i];
-        
-        
-//         int way1 = nums[i] + min(findPlayer1Score(i + 2, j, nums),
-//                                  findPlayer1Score(i + 1, j - 1, nums));
-        
-//         int way2 = nums[j] + min(findPlayer1Score(i + 1, j - 1, nums),
-//                                  findPlayer1Score(i, j - 2, nums));
-        
-//         return max(way1, way2);
-        
-//     }
-//     bool PredictTheWinner(vector<int>& nums) {
-//         int n = nums.size();
-//         int player1Score = findPlayer1Score(0, n - 1, nums);
-//         int totalScore = 0;
-//         for(int i = 0; i < n; i++)
-//             totalScore += nums[i];
-//         int player2Score = totalScore - player1Score;
-        
-//         return pla
-    
-    
     public boolean PredictTheWinner(int[] nums) {
         int totalScore = 0;
         int player1Score = find(0,nums.length-1,nums);
