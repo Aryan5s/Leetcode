@@ -15,10 +15,17 @@
  */
 class Solution {
     public int countNodes(TreeNode root) {
-        if(root==null)return 0;
-    int left=countNodes(root.left);
-    int right=countNodes(root.right);
+        ArrayList<Integer> list = new ArrayList<>();
+        preorder(root , list);
+        return list.size();
+    }
     
-    return left+right+1;
+    public void preorder(TreeNode node , ArrayList<Integer> list){
+        if(node == null){
+              return;
+            }
+        list.add(node.val);
+        preorder(node.left , list);
+        preorder(node.right , list);
     }
 }
