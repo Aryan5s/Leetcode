@@ -15,21 +15,19 @@
  */
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-       
-         ArrayList<Integer> list1 = new ArrayList<>();
-         ArrayList<Integer> list2 = new ArrayList<>();
-        createList(p,list1);
-        createList(q,list2);
-        return list1.equals(list2);
-    }
-    
-    public void createList(TreeNode node , ArrayList<Integer> list){
-        if(node == null){
-           list.add(-1);
-            return;
+      
+        if(p == null && q == null){
+            return true;
         }
-        list.add(node.val);
-        createList(node.left , list);
-        createList(node.right , list);
+    
+        if( (p == null && q != null) || (p != null && q == null)){
+            return false;
+        }
+        
+       if(p.val != q.val) return false;
+        boolean leftTreeMatch = isSameTree(p.left, q.left);
+        boolean rightTreeMatch = isSameTree(p.right, q.right);
+        
+        return leftTreeMatch && rightTreeMatch;
     }
 }
