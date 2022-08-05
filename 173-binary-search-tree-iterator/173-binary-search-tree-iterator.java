@@ -38,10 +38,7 @@ class BSTIterator {
     }
     
     public boolean hasNext() {
-       if(pointer < list.size()){
-           return true;
-       }
-        return false;
+       return pointer < list.size();
     }
 }
 
