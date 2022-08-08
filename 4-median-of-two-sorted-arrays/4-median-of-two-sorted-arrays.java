@@ -15,17 +15,7 @@ class Solution {
         }
 
         //  Second -  Apply sorting to merged array (I have applied insertion sort)
-        
-        for(int fui = 0; fui < mergedArray.length; fui++) {
-            int newElement =  mergedArray[fui];
-            int i;
-
-            for(i = fui; i> 0 && mergedArray[i-1]> newElement; i--) {
-                mergedArray[i] = mergedArray[i-1];
-            }
-
-            mergedArray[i] = newElement;
-        }
+       Arrays.sort(mergedArray);
 
         // Third - Get value of median from sorted array
         
