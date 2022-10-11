@@ -1,19 +1,26 @@
 class Solution {
-     public void dfs(int vertex,int [][] graph,boolean []vis){
-        vis[vertex]=true;
-        for(int i=0;i<graph[vertex].length;i++){
-            if(vis[i]) continue;
-            if(i!=vertex && graph[vertex][i]==1) dfs(i,graph,vis);
+    
+    private void dfs(int node , int[][] graph , boolean[] visited){
+        visited[node] = true;
+        for(int index = 0; index < graph[node].length; index++){
+            if(visited[index] == false){
+                if(graph[node][index] == 1 && index != node){
+                    dfs(index , graph , visited);
+                }
+            }
         }
     }
+    
     public int findCircleNum(int[][] isConnected) {
-        boolean vis[]=new boolean[isConnected.length];
-        int ans=0;
-        for(int i=0;i<isConnected.length;i++){
-            if(vis[i]) continue;
-            ans+=1;
-            dfs(i,isConnected,vis);
+       boolean[] visited = new boolean[isConnected.length];
+        int counter = 0;
+        
+        for(int index = 0; index < isConnected.length; index++){
+            if(visited[index] == false){
+                counter++;
+                dfs(index, isConnected , visited);
+            }
         }
-        return ans;
+        return counter;
     }        
 }
