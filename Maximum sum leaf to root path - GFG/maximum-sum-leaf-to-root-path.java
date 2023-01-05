@@ -113,35 +113,22 @@ class Tree {
 
 class Solution
 {
+    static int maxSum;
     public static int maxPathSum(Node root)
     {
-        ArrayList<ArrayList<Integer>> list = Paths(root);
-        int max = Integer.MIN_VALUE;
-        for(int index = 0; index < list.size(); index++){
-            int interimAns = 0;
-      for(int i = 0; i < list.get(index).size(); i++) interimAns += list.get(index).get(i);
-      if(interimAns > max) max = interimAns;
-        }
-        return max;
+     if(root == null) return 0;
+     maxSum = Integer.MIN_VALUE;
+     helper(root , 0);
+     return maxSum;
     }
     
-     public static ArrayList<ArrayList<Integer>> Paths(Node root){
-        ArrayList<ArrayList<Integer>> res=new ArrayList<>();
-        path(root,res,new ArrayList<>());
-        return res;
-    }
-    public static void path(Node root,ArrayList<ArrayList<Integer>> res,ArrayList<Integer> list){
-        if(root==null){
-            return;
+    public static void helper(Node root , int sum){
+        if(root == null) return;
+        sum += root.data;
+        if(root.left == null && root.right == null){
+            if(sum > maxSum) maxSum = sum;
         }
-        list.add(root.data);
-        if(root.left==null && root.right==null){
-            res.add(new ArrayList<>(list));
-            list.remove(list.size()-1);
-            return;
-        }
-        path(root.left,res,list);
-        path(root.right,res,list);
-        list.remove(list.size()-1);
+        helper(root.left , sum);
+        helper(root.right , sum);
     }
 }
